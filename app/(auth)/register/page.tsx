@@ -1,19 +1,39 @@
+import AuthCard from "@/components/auth/AuthCard";
+import AuthInput from "@/components/auth/AuthInput";
+import PasswordInput from "@/components/auth/PasswordInput";
+
 export default function RegisterPage() {
   return (
-    <div className="flex min-h-screen items-center justify-center">
+    <div className="flex min-h-screen items-center justify-center bg-slate-100 px-6">
+      <AuthCard
+        title="Create Account"
+        description="Start tracking your job applications today."
+        buttonText="Create Account"
+        footerText="Already have an account?"
+        footerLink="/login"
+        footerLinkText="Sign In"
+      >
+        <AuthInput
+          label="Full Name"
+          placeholder="John Doe"
+        />
 
-      <div className="w-full max-w-md rounded-3xl bg-white p-10 shadow-xl">
+        <AuthInput
+          label="Email"
+          type="email"
+          placeholder="you@example.com"
+        />
 
-        <h1 className="text-3xl font-bold">
-          Create Account
-        </h1>
+        <PasswordInput
+          label="Password"
+          placeholder="Create a password"
+        />
 
-        <p className="mt-2 text-gray-500">
-          Start tracking your applications today.
-        </p>
-
-      </div>
-
+        <PasswordInput
+          label="Confirm Password"
+          placeholder="Confirm your password"
+        />
+      </AuthCard>
     </div>
   );
 }
