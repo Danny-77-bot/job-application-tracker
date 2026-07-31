@@ -11,11 +11,47 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { signUp } from "@/lib/auth/auth-client";
+import {useState} from "react";
+
 
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { useRouter } from "next/navigation";
 
 export default function SignUp() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+
+  const  [error,setError]=useState("");
+  const [loading,setLoading]=useState(false);
+    const router = useRouter();
+
+  async  function handleSubmit(e:React.FormEvent) {
+    e.preventDefault();
+
+    setError("");
+    setLoading(true);
+    try {
+      const result=await signUp.email({
+        name,
+        email,
+        password
+      });
+      if(result.error){
+        setError(result.error.message ?? "Failed to create account.");
+      } else {
+        router.push("/sign-in");
+      }
+    } catch (error) {
+      setError("Failed to create account.");
+    } finally {
+      setLoading(false);
+    }
+  }
+
   return (
     <main className="flex min-h-screen items-center justify-center bg-slate-100 px-4 py-10">
       <Card className="w-full max-w-md shadow-xl">
@@ -36,7 +72,7 @@ export default function SignUp() {
 
         </CardHeader>
 
-        <form>
+        <form onSubmit={handleSubmit}>
 
           <CardContent className="space-y-5">
 
@@ -50,6 +86,8 @@ export default function SignUp() {
                 type="text"
                 placeholder="Yohanis Getachew"
                 required
+                value={name}
+                onChange={(e) => setName(e.target.value)} 
               />
             </div>
 
@@ -63,6 +101,8 @@ export default function SignUp() {
                 type="email"
                 placeholder="yohanis.getachew@example.com"
                 required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}      
               />
             </div>
 
@@ -76,21 +116,12 @@ export default function SignUp() {
                 type="password"
                 placeholder="••••••••"
                 required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)} 
               />
             </div>
 
-            <div className="space-y-2">
-              <Label htmlFor="confirmPassword">
-                Confirm Password
-              </Label>
-
-              <Input
-                id="confirmPassword"
-                type="password"
-                placeholder="••••••••"
-                required
-              />
-            </div>
+          
 
           </CardContent>
 
@@ -106,7 +137,7 @@ export default function SignUp() {
             <p className="text-center text-sm text-gray-600">
               Already have an account?{" "}
               <Link
-                href="/login"
+                href="/sign-in"
                 className="font-semibold text-blue-600 hover:underline"
               >
                 Log in

@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
@@ -36,13 +37,17 @@ export default function Navbar() {
 
         {/* Desktop Buttons */}
         <div className="hidden items-center gap-3 md:flex">
+        <Link href="/sign-in">
           <button className="rounded-lg px-4 py-2 text-sm font-medium text-gray-700 transition hover:bg-gray-100">
-            Login
+            Login 
           </button>
+        </Link>
 
+         <Link href="/sign-up">
           <button className="rounded-lg bg-blue-600 px-5 py-2 text-sm font-medium text-white transition hover:bg-blue-700">
             Get Started
           </button>
+         </Link>
         </div>
 
         {/* Mobile Menu Button */}
