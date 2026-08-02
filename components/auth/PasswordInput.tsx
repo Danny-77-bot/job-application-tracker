@@ -6,12 +6,17 @@ import { Eye, EyeOff } from "lucide-react";
 interface PasswordInputProps {
   label: string;
   placeholder?: string;
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 export default function PasswordInput({
   label,
   placeholder,
+  value,
+  onChange,
 }: PasswordInputProps) {
+  console.log("Password value:", value);
   const [showPassword, setShowPassword] = useState(false);
 
   return (
@@ -21,18 +26,17 @@ export default function PasswordInput({
       </label>
 
       <div className="relative">
-
         <input
           type={showPassword ? "text" : "password"}
           placeholder={placeholder}
+          value={value}
+          onChange={onChange}
           className="w-full rounded-xl border border-gray-300 px-4 py-3 pr-12 outline-none transition focus:border-blue-600"
         />
 
         <button
           type="button"
-          onClick={() =>
-            setShowPassword(!showPassword)
-          }
+          onClick={() => setShowPassword(!showPassword)}
           className="absolute right-4 top-1/2 -translate-y-1/2"
         >
           {showPassword ? (
@@ -41,7 +45,6 @@ export default function PasswordInput({
             <Eye size={20} />
           )}
         </button>
-
       </div>
     </div>
   );

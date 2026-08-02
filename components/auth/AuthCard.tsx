@@ -8,6 +8,8 @@ interface AuthCardProps {
   footerLink: string;
   footerLinkText: string;
   children: React.ReactNode;
+  loading?: boolean;
+  onSubmit?: (e: React.FormEvent<HTMLFormElement>) => void;
 }
 
 export default function AuthCard({
@@ -18,6 +20,8 @@ export default function AuthCard({
   footerLink,
   footerLinkText,
   children,
+  loading,
+  onSubmit
 }: AuthCardProps) {
   return (
     <div className="w-full max-w-md rounded-3xl bg-white p-8 shadow-xl">
@@ -34,15 +38,16 @@ export default function AuthCard({
 
       </div>
 
-      <form className="space-y-5">
+      <form className="space-y-5" onSubmit={onSubmit}>
 
         {children}
 
         <button
           type="submit"
           className="w-full rounded-xl bg-blue-600 py-3 font-semibold text-white transition hover:bg-blue-700"
+           disabled={loading}
         >
-          {buttonText}
+          {loading ? "Signing In..." : buttonText}
         </button>
 
       </form>
