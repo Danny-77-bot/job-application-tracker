@@ -1,18 +1,19 @@
+import DashboardLayout from "./DashboardLayou";
 
-
-export default function Dashboard() {
-
-
+export default function DashboardPage() {
   return (
-    <div className="flex flex-col gap-4">
-      <h1 className="text-2xl font-bold">Dashboard</h1>
-      
-      <button
-        
-        className="rounded-lg bg-blue-600 py-2.5 font-semibold text-white transition hover:bg-blue-700"
-      >
-        Add Item
-      </button>
-    </div>
+    <DashboardLayout>
+      <div className="rounded-xl bg-white p-8 shadow">
+
+        <h1 className="text-3xl font-bold">
+          Welcome Back 👋
+        </h1>
+
+        <p className="mt-3 text-gray-600">
+          Your dashboard is ready. Next, we'll build job application management.
+        </p>
+
+      </div>
+    </DashboardLayout>
   );
 }
