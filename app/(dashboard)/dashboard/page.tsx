@@ -1,5 +1,6 @@
 import DashboardStats from "@/components/dashboard/DashboardStats";
 import DashboardLayout from "./DashboardLayou";
+import RecentApplications from "@/components/dashboard/RecentApplications";
 
 export default function DashboardPage() {
   return (
@@ -18,6 +19,7 @@ export default function DashboardPage() {
         </div>
 
         <DashboardStats />
+        <RecentApplications/>
 
       </div>
 
